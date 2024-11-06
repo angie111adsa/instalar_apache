@@ -1,0 +1,19 @@
+- name: intalar apache en ubuntu
+  hosts: all
+  become: true
+
+  tasks:
+    - name: actualizar paquetes
+      apt:
+        update_cache: yes
+
+    - name: instalar apache
+      apt:
+        name: apache2
+        state: present 
+
+    - name: iniciar y habilitar apache
+      systemd:
+        name: apache2
+        state: started 
+        enabled: true
